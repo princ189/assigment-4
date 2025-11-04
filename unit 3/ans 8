@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+// Print numbers 1 to N using recursion
+void print1toN(int n) {
+    if(n == 0) return;
+    print1toN(n - 1);
+    printf("%d ", n);
+}
+
+// Sum of first N natural numbers using recursion
+int sumN(int n) {
+    if(n == 0)
+        return 0;
+    else
+        return n + sumN(n - 1);
+}
+
+// Factorial using recursion
+int factorial(int n) {
+    if(n == 0)
+        return 1;
+    else
+        return n * factorial(n - 1);
+}
+
+// Fibonacci using recursion
+int fibonacci(int n) {
+    if(n == 0) return 0;
+    if(n == 1) return 1;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// Reverse digits using recursion
+int reverse(int n, int rev) {
+    if(n == 0)
+        return rev;
+    return reverse(n / 10, rev * 10 + n % 10);
+}
+
+int main() {
+    int choice, n;
+    do {
+        printf("\n==== RECURSION MENU ====\n");
+        printf("1. Print 1 to N\n");
+        printf("2. Sum of N Natural Numbers\n");
+        printf("3. Factorial\n");
+        printf("4. Fibonacci Series\n");
+        printf("5. Reverse Number\n");
+        printf("6. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                printf("Enter N: ");
+                scanf("%d", &n);
+                print1toN(n);
+                break;
+            case 2:
+                printf("Enter N: ");
+                scanf("%d", &n);
+                printf("Sum = %d\n", sumN(n));
+                break;
+            case 3:
+                printf("Enter N: ");
+                scanf("%d", &n);
+                printf("Factorial = %d\n", factorial(n));
+                break;
+            case 4:
+                printf("Enter number of terms: ");
+                scanf("%d", &n);
+                printf("Fibonacci Series: ");
+                for(int i=0;i<n;i++)
+                    printf("%d ", fibonacci(i));
+                break;
+            case 5:
+                printf("Enter a number: ");
+                scanf("%d", &n);
+                printf("Reverse = %d\n", reverse(n, 0));
+                break;
+        }
+    } while(choice != 6);
+
+    return 0;
+}
