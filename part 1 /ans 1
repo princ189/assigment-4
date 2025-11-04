@@ -1,0 +1,55 @@
+#include <stdio.h>
+#define SIZE 3
+
+int main() {
+    int a[SIZE][SIZE], b[SIZE][SIZE], sum[SIZE][SIZE], sub[SIZE][SIZE], mul[SIZE][SIZE];
+    int i, j, k;
+
+    printf("Enter elements of first matrix:\n");
+    for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++)
+            scanf("%d", &a[i][j]);
+
+    printf("Enter elements of second matrix:\n");
+    for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++)
+            scanf("%d", &b[i][j]);
+
+    // Addition and Subtraction
+    for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++){
+            sum[i][j] = a[i][j] + b[i][j];
+            sub[i][j] = a[i][j] - b[i][j];
+        }
+
+    // Multiplication
+    for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE;j++){
+            mul[i][j]=0;
+            for(k=0;k<SIZE;k++)
+                mul[i][j] += a[i][k]*b[k][j];
+        }
+
+    printf("\nSum of matrices:\n");
+    for(i=0;i<SIZE;i++){
+        for(j=0;j<SIZE;j++)
+            printf("%d ", sum[i][j]);
+        printf("\n");
+    }
+
+    printf("\nSubtraction of matrices:\n");
+    for(i=0;i<SIZE;i++){
+        for(j=0;j<SIZE;j++)
+            printf("%d ", sub[i][j]);
+        printf("\n");
+    }
+
+    printf("\nMultiplication of matrices:\n");
+    for(i=0;i<SIZE;i++){
+        for(j=0;j<SIZE;j++)
+            printf("%d ", mul[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
