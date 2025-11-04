@@ -1,0 +1,123 @@
+#include <stdio.h>
+
+// 1️⃣ Power function
+int power(int a, int b) {
+    if(b == 0)
+        return 1;
+    else
+        return a * power(a, b - 1);
+}
+
+// 2️⃣ Leap year
+int isLeap(int year) {
+    return (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0));
+}
+
+// 3️⃣ Factorial (recursive)
+int factorial(int n) {
+    if(n == 0)
+        return 1;
+    else
+        return n * factorial(n - 1);
+}
+
+// 4️⃣ Swap (call by value)
+void swap(int x, int y) {
+    int temp = x;
+    x = y;
+    y = temp;
+    printf("Inside function: a = %d, b = %d\n", x, y);
+}
+
+// 5️⃣ Find max and min using call by reference
+void findMinMax(int arr[], int n, int *max, int *min) {
+    *max = *min = arr[0];
+    for(int i = 1; i < n; i++) {
+        if(arr[i] > *max)
+            *max = arr[i];
+        if(arr[i] < *min)
+            *min = arr[i];
+    }
+}
+
+// 6️⃣ Calculator functions
+float add(float a, float b) { return a + b; }
+float sub(float a, float b) { return a - b; }
+float mul(float a, float b) { return a * b; }
+float divide(float a, float b) { return (b != 0) ? a / b : 0; }
+
+// -------------------- MAIN MENU --------------------
+int main() {
+    int choice;
+    do {
+        printf("\n==== MENU ====\n");
+        printf("1. Power Function\n");
+        printf("2. Leap Year Check\n");
+        printf("3. Factorial (Recursive)\n");
+        printf("4. Swap (Call by Value)\n");
+        printf("5. Find Max & Min (Call by Reference)\n");
+        printf("6. Calculator\n");
+        printf("7. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        if(choice == 1) {
+            int a, b;
+            printf("Enter base and exponent: ");
+            scanf("%d %d", &a, &b);
+            printf("%d^%d = %d\n", a, b, power(a, b));
+        }
+        else if(choice == 2) {
+            int year;
+            printf("Enter year: ");
+            scanf("%d", &year);
+            if(isLeap(year))
+                printf("%d is a Leap Year\n", year);
+            else
+                printf("%d is Not a Leap Year\n", year);
+        }
+        else if(choice == 3) {
+            int n;
+            printf("Enter number: ");
+            scanf("%d", &n);
+            printf("Factorial of %d = %d\n", n, factorial(n));
+        }
+        else if(choice == 4) {
+            int a, b;
+            printf("Enter two numbers: ");
+            scanf("%d %d", &a, &b);
+            printf("Before swap: a = %d, b = %d\n", a, b);
+            swap(a, b);
+            printf("After function call: a = %d, b = %d\n", a, b);
+        }
+        else if(choice == 5) {
+            int n;
+            printf("Enter array size: ");
+            scanf("%d", &n);
+            int arr[n], max, min;
+            printf("Enter %d elements: ", n);
+            for(int i = 0; i < n; i++)
+                scanf("%d", &arr[i]);
+            findMinMax(arr, n, &max, &min);
+            printf("Maximum = %d, Minimum = %d\n", max, min);
+        }
+        else if(choice == 6) {
+            float a, b;
+            char op;
+            printf("Enter expression (e.g. 5 + 3): ");
+            scanf("%f %c %f", &a, &op, &b);
+            switch(op) {
+                case '+': printf("Result = %.2f\n", add(a, b)); break;
+                case '-': printf("Result = %.2f\n", sub(a, b)); break;
+                case '*': printf("Result = %.2f\n", mul(a, b)); break;
+                case '/': printf("Result = %.2f\n", divide(a, b)); break;
+                default: printf("Invalid operator!\n");
+            }
+        }
+        else if(choice != 7)
+            printf("Invalid choice!\n");
+
+    } while(choice != 7);
+
+    return 0;
+}
